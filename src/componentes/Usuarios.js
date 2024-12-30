@@ -23,7 +23,7 @@ function Usuarios() {
 
     const eliminarUsuario = async (id) => {
         try {
-            const respuesta = await axios.delete(`${process.env.REACT_APP_API_URL_SERVER_DELETE}/${id}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL_SERVER_DELETE}/${id}`);
             setUsuarios(usuarios.filter(usuario => usuario._id !== id));
         } catch (error) {
             console.error('Error al eliminar el usuario:', error);
