@@ -12,7 +12,7 @@ function Usuarios() {
     useEffect(() => {
         const obtenerUsuarios = async () => {
             try {
-                const respuesta = await axios.get('http://localhost:9000/user/');
+                const respuesta = await axios.get(`${process.env.REACT_APP_API_URL_SERVER_GET}`);
                 setUsuarios(respuesta.data);
             } catch (error) {
                 console.error('Error al obtener los usuarios:', error);
@@ -23,7 +23,7 @@ function Usuarios() {
 
     const eliminarUsuario = async (id) => {
         try {
-            const respuesta = await axios.delete(`http://localhost:9000/user/${id}`);
+            const respuesta = await axios.delete(`${process.env.REACT_APP_API_URL_SERVER_DELETE}/${id}`);
             setUsuarios(usuarios.filter(usuario => usuario._id !== id));
         } catch (error) {
             console.error('Error al eliminar el usuario:', error);
@@ -53,7 +53,7 @@ function Usuarios() {
 
     const editarUsuario = async (id, usuarioActualizado) => {
         try {
-            const respuesta = await axios.put(`http://localhost:9000/user/${id}`, usuarioActualizado);
+            const respuesta = await axios.put(`${process.env.REACT_APP_API_URL_SERVER_PUT}/${id}`, usuarioActualizado);
             setUsuarios(usuarios.map(usuario => usuario._id === id ? respuesta.data : usuario));
             Swal.fire({
                 title: "Usuario Actualizado!",
